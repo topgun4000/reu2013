@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.19pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Graph Generation}{3}{0}{1}
+\beamer@sectionintoc {2}{Examples}{7}{0}{2}
+\beamer@sectionintoc {3}{Other Techniques}{10}{0}{3}
+\beamer@sectionintoc {4}{Projective Planes}{14}{0}{4}

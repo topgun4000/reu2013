@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=.5]
+  \draw (0,0) circle(.5cm);
+  \node at (0,2) (ds) {$\vdots$};
+  \draw (0,4) circle(.5cm);
+  \draw (0,6) circle(.5cm);
+  \draw (0,8) circle(.5cm);
+  \node at (4,8) (v0) {$\bullet$};
+  \node at (4,6) (v1) {$\bullet$};
+  \node at (4,4) (v2) {$\bullet$};
+  \node at (4,2) (dv) {$\vdots$};
+  \node at (4,0) (vn) {$\bullet$};
+  \node at (2,-1) (label) {(b) $\frac{n(n-1)}2$ edges};
+  \node at (.1,8.2) (u0) {$\bullet$};
+  \node at (-.1,5.7) (u1) {$\bullet$};
+  \node at (-.2,.2) (u2) {$\bullet$};
+  \node at (.3,-.1) (u3) {$\bullet$};
+  \draw [ultra thick] (4,8) -- (-.1,5.7);
+  \draw [ultra thick, red] (4,6) -- (.1,8.2);
+  \draw [ultra thick] (4,4) -- (-.2,.2);
+  \draw [ultra thick, red] (4,4) -- (.3,-.1);
+  \draw [ultra thick, green] (4,8) -- (.1,8.2);
+  \draw [ultra thick, green] (4,6) -- (-.1,5.7);
+  \draw [ultra thick, green] (4,0) -- (-.2,.2);
+  \draw [ultra thick, green] (4,0) -- (.3,-.1);
+\end{tikzpicture}

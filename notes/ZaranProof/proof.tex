@@ -1,0 +1,64 @@
+\documentclass[12 pt]{article}
+
+%%%%%% INCLUDE LIBRARIES
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+%%%%%% DOCUMENT HEADERS
+\pagestyle{plain}			% Alternatively "empty" for no page numbers
+\topmargin -0.5 in           		% Adjust top margin from 1"
+\textwidth 6 in              		% Width of printed area
+\textheight 8.5 in             		% Height of printed area
+\oddsidemargin .25 in      	% Left margin adjustment for odd pages (0 = 1" margin)
+\evensidemargin .25 in     	% Right Margin adjustment for even pages
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\textbf{Problem:}\\
+Determine a general form for the maximum sum of the degrees of $k+1$ vertices in 
+one partition of a bipartite graph. The purpose is to prove an easy method for 
+weeding out invalid degree sequences for the Zarankiewicz number checker script.
+
+\begin{center}\begin{tikzpicture}[scale=.5]
+  \draw (0,0) ellipse (1cm and 2cm);
+  \draw (8,0) ellipse (1.5cm and 3cm);
+  \node at (0,0) (N) {$N$};
+  \node at (8,0) (M) {$M$};
+\end{tikzpicture}\end{center}
+
+$$|N|=n,\ |M|=m,\ n\le m $$
+Denote the degree sequence $S$ of $N$ as $s_0, s_1, \ldots, s_{n-1}$.
+
+\vspace{.5cm}
+
+\textbf{Lemma:}
+$$\sum_{i=0}^ks_i \le m + \binom{k+1}{2}$$
+In addition, equality is theoretically achievable if $m \ge \binom{k+1}{2}$.
+
+\vspace{.5cm}
+
+\textbf{Proof:}\\
+Generalize Theorem 2 given in Guy. Alternatively:\\
+
+Let $\Delta_k$ denote $\sum_{i=0}^ks_i$.\\
+Suppose $$\Delta_k = m + \binom{k+1}{2} + 1.$$
+Partition the set $M$ into $k+1$ subsets.\\
+We must add $\binom{k+1}{2} + 1$ edges to the $k+1$ vertices in $N$ in order for
+the sum of the degree sequences to reach $m + \binom{k+1}{2} + 1$.\\
+We can have a maximum of $\binom{k+1}{2}$ intersections of two of the $k+1$ subsets.\\
+By the pigeon-hole principle, at least one such intersection must contain at least two
+vertices.\\
+But this would constitute a $C_4$. Contradiction.\\
+
+A simple construction based on this proof shows that $\Delta_k=m+\binom{k+1}{2}$ is
+theoretically achievable if $m\ge \binom{k+1}{2}$.\\
+
+\textbf{Solution:}\\
+Thus we can eliminate all degree sequences in which the sum of the largest $k$ degrees
+exceeds $m + \binom{k}2$.
+
+\end{document}

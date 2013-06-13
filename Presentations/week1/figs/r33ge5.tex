@@ -1,0 +1,17 @@
+\begin{center}\begin{tikzpicture}[scale=.8]
+  \node at (0,0) (n0) {$\bullet$};
+  \node at (2,0) (n1) {$\bullet$};
+  \node at (2.5,1.8) (n2) {$\bullet$};
+  \node at (1,3) (n3) {$\bullet$};
+  \node at (-.5,1.8) (n4) {$\bullet$};
+  \draw [red, ultra thick] (n0) -- (n1);
+  \draw [red, ultra thick] (n1) -- (n2);
+  \draw [red, ultra thick] (n2) -- (n3);
+  \draw [red, ultra thick] (n3) -- (n4);
+  \draw [red, ultra thick] (n4) -- (n0);
+  \draw [blue, ultra thick] (n0) -- (n2);
+  \draw [blue, ultra thick] (n2) -- (n4);
+  \draw [blue, ultra thick] (n4) -- (n1);
+  \draw [blue, ultra thick] (n1) -- (n3);
+  \draw [blue, ultra thick] (n3) -- (n0);
+\end{tikzpicture}\end{center}

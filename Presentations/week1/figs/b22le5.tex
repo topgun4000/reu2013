@@ -1,0 +1,19 @@
+\begin{center}\begin{tikzpicture}[scale=.45]
+  \node at (0,0) (v0) {$\cdot$};
+  \node at (0,2) (v1) {$\cdot$};
+  \node at (0,4) (v2) {$\cdot$};
+  \node at (0,6) (v3) {$\cdot$};
+  \node at (0,8) (v4) {$\cdot$};
+  \node at (4,0) (u0) {$\cdot$};
+  \node at (4,2) (u1) {$\cdot$};
+  \node at (4,4) (u2) {$\cdot$};
+  \node at (4,6) (u3) {$\cdot$};
+  \node at (4,8) (u4) {$\cdot$};
+  \foreach \x/\y in {v0/u0,v0/u1,v0/u2,v2/u1,v2/u3,v4/u4,v4/u3,v4/u2} \draw[color=red] (\x) -- (\y);
+  \node[anchor=west] at (4.2,6) (t0) {$\ge13$ edges};
+  \node[anchor=west] at (4.2,5) (t1) {in one color,};
+  \node[anchor=west] at (4.2,4) (t2) {degree};
+  \node[anchor=west] at (4.2,3) (t4) {sequence:};
+  \node[anchor=west] at (4.2,2) (t3) {$3,3,3,2,2$};
+  \node at (2,-.6) (lab) {$b(2,2)\le5$};
+\end{tikzpicture}\end{center}

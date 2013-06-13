@@ -1,0 +1,20 @@
+% TODO: draw bipartite graph in tikz
+% Note: already in tikzpicture environment (scaling done in main doc)
+%\tikzstyle{every node}=[font=\tiny]
+\matrix[nodes={draw, circle, fill=orange!20}, 
+    row sep=.5cm, column sep=1.5cm, inner sep=1pt, minimum size=.25cm]{
+  \node (v0) {0}; & \node (v14) {14}; \\
+  \node (v1) {1}; & \node (v15) {15}; \\
+  \node (v2) {2}; & \node (v7) {7}; \\
+  \node (v3) {3}; & \node (v8) {8}; \\
+  \node (v4) {4}; & \node (v9) {9}; \\
+  \node (v5) {5}; & \node (v10) {10}; \\
+  \node (v6) {6}; & \node (v11) {11}; \\
+  \node (v16) {16}; & \node (v12) {12}; \\
+  \node (v17) {17}; & \node (v13) {13}; \\
+};
+\foreach \u/\v in {v0/v7,v0/v14,v0/v15,v1/v8,v1/v9,v1/v14} \draw (\u) -- (\v);
+\foreach \u/\v in {v2/v8,v2/v10,v2/v15,v3/v9,v3/v11,v3/v15} \draw (\u) -- (\v);
+\foreach \u/\v in {v4/v10,v4/v12,v4/v14,v5/v11,v5/v13,v5/v14} \draw (\u) -- (\v);
+\foreach \u/\v in {v6/v12,v6/v13,v6/v15,v17/v7,v17/v9,v17/v10} \draw (\u) -- (\v);
+\foreach \u/\v in {v17/v13,v16/v7,v16/v8,v16/v11,v16/v12} \draw (\u) -- (\v);

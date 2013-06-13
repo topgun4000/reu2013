@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.19pt}
+\select@language {english}
+\beamer@sectionintoc {1}{General Ramsey Theory}{3}{0}{1}
+\beamer@sectionintoc {2}{Definitions}{7}{0}{2}
+\beamer@sectionintoc {3}{Problems of Interest}{15}{0}{3}

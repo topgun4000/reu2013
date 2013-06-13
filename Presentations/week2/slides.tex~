@@ -1,0 +1,231 @@
+\documentclass[pdf,hyperref={urlbordercolor={0 1 1}},xcolor=pdftex,dvipsnames]{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Golm}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{pifont}
+\usepackage{amsmath,amssymb,curves,epic,cancel}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{scalefnt}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{automata,positioning}
+
+%\setbeamercolor{math text}{fg=blue!50!black}
+
+\beamertemplatenavigationsymbolsempty
+
+\title[Ramsey Theory: Computational Approaches]
+{Computational Approaches\\ to Ramsey Problems}
+
+\author[Alex Weinstock-Collins \& Ethan Mark]
+  {{Alex Weinstock-Collins\\\vspace{.1cm} \& Ethan Mark}\\
+}
+
+\date{
+  REU Week 2 Report\\ \vspace{.25cm}
+  June 14, 2013
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \addtocounter{framenumber}{-1}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+%Title Page
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%Outline
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Graph Generation}
+
+\begin{frame}
+  \frametitle{Ramsey Theory}
+  Review of definitions\\
+  Particularly Ramsey, bipartite Ramsey, Zarankiewicz ($z(n,m)$)
+  % TODO:
+  % -recall Ramsey Definitions
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nauty}
+  Explain nauty, how we use it
+  % TODO:
+  % -explain nauty
+  % -how we can use nauty to improve lower bounds on small Ramsey-type numbers
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limits of nauty}
+  How long nauty took to generate $C_4$-free bipartite graphs.
+  \begin{center}\begin{tabular}{| c | c | c | c |}\hline
+    \multirow{2}{*}{Vertices} & \multirow{2}{*}{Edges} & Graphs & 
+      \multirow{2}{*}{Time Taken} \\
+    & & Generated & \\\hline\hline
+    16 & 24 & 4\footnote{Includes three subgraphs of $K_{8,8}$ and one subgraph of
+      $K_{7,9}$, since $z(8,8)=z(7,9)=24$ and nauty does not allow specification of
+      vertex allocation.} & 1.11 seconds \\\hline
+    18 & 29 & 1 & 15.90 seconds \\\hline
+    20 & 34 & 1 & $\approx5.5$ minutes \\\hline
+    22 & 39 & 2\footnote{One subgraph of $K_{11,11}$, one of $K_{10,12}$, 
+      $z(11,11)=z(10,12)=39$.} & $\approx3$ hours \\\hline
+  \end{tabular}\end{center}
+  This technique will only be useful for diagonal Zarankiewicz numbers.
+\end{frame}
+
+\section{Examples}
+
+\begin{frame}
+  \frametitle{The unique witness for $z(9,9)=29$}
+  \begin{center}
+    \begin{minipage}[c]{.47\textwidth}
+      \includegraphics[scale=.5]{figs/b18z29.pdf}
+    \end{minipage}
+    \begin{minipage}[c]{.47\textwidth}
+      \begin{center}
+        {\scalefont{.35}
+          \begin{tikzpicture}
+            \input{figs/nice_b18z29.tex}
+          \end{tikzpicture}
+        }
+      \end{center}
+    \end{minipage}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The unique witness for $z(10,10)=34$}
+  \begin{center}
+    \begin{minipage}[c]{.47\textwidth}
+      \includegraphics[scale=.5]{figs/b20z34.pdf}
+    \end{minipage}
+    \begin{minipage}[c]{.47\textwidth}
+      \begin{center}
+        {\scalefont{.35}
+          \begin{tikzpicture}[scale=.5]
+            \input{figs/nice_b20z34.tex}
+          \end{tikzpicture}
+        }
+      \end{center}
+    \end{minipage}
+  \end{center}
+\end{frame}
+
+\section{Other Techniques}
+
+\begin{frame}
+  \frametitle{Zarankiewicz numbers to check}
+  \begin{center}
+    \begin{tikzpicture}
+      \node[anchor=south west, inner sep=0pt, outer sep=0pt]
+        (image) at (0,0) {\includegraphics[scale=.5]{figs/ZaranTables.pdf}};
+      \draw[color=red] (5.3,1.12) circle (.15cm);
+      \draw[color=blue] (3.65,2.7) -- (5.1,4.1);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+  \frametitle{Zarankiewicz numbers to check}
+  \begin{center}
+    \begin{minipage}[b]{.47\textwidth}
+      \begin{tikzpicture}
+        \node[anchor=south west, inner sep=0pt, outer sep=0pt]
+          (image) at (0,0) {\includegraphics[scale=.25]{figs/ZaranTables.pdf}};
+        \draw[color=red] (2.65,.56) circle (.075cm);
+        \draw[color=blue] (1.825,1.35) -- (2.55,2.05);
+      \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[b]{.47\textwidth}
+      \begin{itemize}
+        \item From Guy, 1969
+        \item Values are $z(n,m)+1$ due to alternate definition
+        \item Values above top line determined by easily verifiable theorem
+      \end{itemize}
+    \end{minipage}
+    \begin{itemize}
+      \item Values between lines determined by other theorem (proof missing)
+      \item Other values determined by individual argument
+      \item Circled value does not match newer paper (Dybizba\'nski, Dzido, 
+        Radziszowski, 2013)
+      \item Values beyond blue line are not feasibly checkable by nauty
+    \end{itemize}
+  \end{center}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+  \frametitle{Zarankiewicz numbers to check}
+  \begin{minipage}[b]{.52\textwidth}
+    \begin{center}
+      \input{figs/zaran.tex}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}[b]{.44\textwidth}
+    \begin{center}
+      \input{figs/zaran2.tex}
+    \end{center}
+  \end{minipage}
+  \textit{Theorem} (Guy, 1968): $z(n,m)=m+\binom{n}{2}$ for $m>\binom{n}{2}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Alternative methods}
+  Algorithm for checking Zarankiewicz numbers:
+  \begin{itemize}
+    \item Begin with $n,m~(n\le m)$ and $z$, a guess at $z(n,m)$ to check
+    \item Generate all possible degree sequences of the $n$ vertices on the
+      left which add up to $z$.
+    \item Eliminate all theoretically impossible sequences
+    \begin{itemize}
+      \item Denote the degree sequence $S=(s_0,s_1,\ldots,s_{n-1})$
+      \item Let $\Delta_k=\sum_{i=0}^{k-1}s_i$
+      \item If $\Delta_k>m+\binom{k}{2}$, then the degree sequence can be 
+        eliminated
+    \end{itemize}
+    \item Check all remaining (theoretically possible) degree sequence
+  \end{itemize}
+  Note: Still working on last step
+\end{frame}
+
+\section{Projective Planes}
+
+\begin{frame}
+  \frametitle{Projective Planes}
+  What are they?\\Why are they useful?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Readings}
+  % TODO
+\end{frame}
+
+\begin{frame}
+  \frametitle{Questions}
+  \begin{center}
+    {\Large Questions?}
+  \end{center}
+\end{frame}
+
+\end{document}
+
+
+

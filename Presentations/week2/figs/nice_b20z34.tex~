@@ -1,0 +1,19 @@
+\matrix[nodes={draw, circle, fill=orange!20}, 
+    row sep=.43cm, column sep=1.5cm, inner sep=1pt, minimum size=.25cm]{
+  \node (v0) {0}; & \node (v19) {19}; \\
+  \node (v1) {1}; & \node (v17) {17}; \\
+  \node (v2) {2}; & \node (v13) {13}; \\
+  \node (v3) {3}; & \node (v12) {12}; \\
+  \node (v4) {4}; & \node (v10) {10}; \\
+  \node (v11) {11}; & \node (v9) {9}; \\
+  \node (v14) {14}; & \node (v8) {8}; \\
+  \node (v15) {15}; & \node (v7) {7}; \\
+  \node (v16) {16}; & \node (v6) {6}; \\
+  \node (v18) {18}; & \node (v5) {5}; \\
+};
+\foreach \u/\v in {v0/v6,v0/v12,v0/v13,v1/v7,v1/v12,v1/v19} \draw (\u) -- (\v);
+\foreach \u/\v in {v2/v8,v2/v12,v2/v17,v3/v9,v3/v13,v3/v19} \draw (\u) -- (\v);
+\foreach \u/\v in {v4/v10,v4/v13,v4/v17,v11/v5,v11/v19,v11/v17} \draw (\u) -- (\v);
+\foreach \u/\v in {v14/v6,v14/v7,v14/v19,v14/v17,v15/v6,v15/v8} \draw (\u) -- (\v);
+\foreach \u/\v in {v15/v10,v15/v9,v16/v5,v16/v9,v16/v10,v16/v12} \draw (\u) -- (\v);
+\foreach \u/\v in {v18/v5,v18/v7,v18/v8,v18/v13} \draw (\u) -- (\v);

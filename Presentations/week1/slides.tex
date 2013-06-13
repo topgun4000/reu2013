@@ -1,0 +1,236 @@
+\documentclass[pdf,hyperref={urlbordercolor={0 1 1}},xcolor=pdftex,dvipsnames]{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Golm}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{pifont}
+\usepackage{amsmath,amssymb,curves,epic,cancel}
+\usepackage{tikz}
+\usepackage{multirow}
+
+%\setbeamercolor{math text}{fg=blue!50!black}
+
+\beamertemplatenavigationsymbolsempty
+
+\title[Introduction to Ramsey Theory]
+{Introduction to \\Ramsey Theory}
+
+\author[Alex Weinstock-Collins \& Ethan Mark]
+  {{Alex Weinstock-Collins\\\vspace{.1cm} \& Ethan Mark}\\
+}
+
+\date{
+  REU Week 1 Report\\ \vspace{.25cm}
+  June 7, 2013
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \addtocounter{framenumber}{-1}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+%Title Page
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%Outline
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+%\begin{frame} % Example slide format
+%  \frametitle{Example Frame Title}
+%  [Stuff that goes on slide]
+%\end{frame}
+
+\section{General Ramsey Theory}
+
+\begin{frame}
+  \frametitle{Ramsey Theorem (infinite)}
+  \textbf{Ramsey Theorem} (infinite version, Ramsey 1928): An infinite complete graph with 
+    edges colored red and blue contains an infinite complete monochromatic subgraph.\\\vspace{.25cm}
+  \textit{Proof Idea.} Choose a vertex $a_0$, there are an infinite number of edges of one 
+    color incident to that vertex, call this set $N_0$. Choose a vertex $a_1\in N_0$, there 
+    are an infinite number of edges of one color incident to $a_1$. Repeat infinitely to form
+    a chain.
+  \begin{center}\begin{tikzpicture}
+    \input{figs/rt_inf.tex}
+  \end{tikzpicture}\end{center}
+  The subgraphs consisting of $a_0, a_3, \cdots$ and $a_1, a_2, \cdots$ are both
+  monochromatic and at least one is infinite.\\\vspace{.25cm}
+  The theorem can be extended to any finite number of colors.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ramsey Theorem (finite)}
+  \textbf{Ramsey Theorem} (finite version, Ramsey 1928): For any pair of positive integers $m$ and $n$,
+    there exists an integer $k$ such that any complete graph on $k$ vertices with edges
+    colored red and blue must contain either a monochromatic red complete subgraph on $m$
+    vertices or a monochromatic blue complete subgraph on $n$ vertices.\\\vspace{.25cm}
+  \textit{Proof Idea.} Let $R(m,n)=k$, the particular $k$ value required for the pair $m$ and
+    $n$. Clearly $R(m,1)=R(1,n)=1$. Bound $R(m,n)$ inductively from above by
+  $$R(m,n)\le R(m-1,n) + R(m,n-1).$$
+\end{frame}
+
+\begin{frame}[noframenumbering]
+  \frametitle{Ramsey Theorem (finite)}
+  \begin{center}\begin{tikzpicture}
+    \input{figs/rt_fin.tex}
+  \end{tikzpicture}\end{center}
+  \textbf{Case I}: $|\ \mathbb{R}\ |\ge R(m-1,n)$. $\mathbb{R}$ contains a red $K_{m-1}$ or
+    a blue $K_n$, thus $G$ contains a red $K_m$ or a blue $K_n$.\\
+  \textbf{Case II}: $|\ \mathbb{L}\ |\ge R(m,n-1)$. $\mathbb{L}$ contains a red $K_m$ or a
+    blue $K_{n-1}$, thus $G$ contains a red $K_m$ or a blue $K_n$.\\
+  Therefore $R(m,n)\le R(m-1,n)+R(m,n-1)$.
+\end{frame}
+
+\section{Definitions}
+
+\begin{frame}
+  \frametitle{Ramsey Numbers}
+  Ramsey Theory deals with finding order amongst greater chaos. \\\vspace{.25cm} 
+  Example: if we want to find a constellation of 10 stars forming a convex polygon where no three stars are collinear, how many stars do there need to be, to guarantee its occurrence? (The Happy Ending problem).  Ramsey numbers are a similar idea. 
+\end{frame}
+
+\begin{frame}[noframenumbering]
+ \frametitle{Ramsey Numbers}
+  \textbf{Ramsey Number}: The Ramsey number $R(n_1,....,n_c)=r$ is the least number such that if 
+    the edges of a complete graph of order $r$ are colored with $c$ different 
+    colors, then for some $i$ between 1 and $c$, it must contain a complete subgraph of order 
+    $n_i$ whose edges are all color $i$. \\\vspace{.25cm}
+  \textit{Motivating problem}: What is the minimum number of people you must invite to a party 
+    to guarantee you will alway have 3 people who all know each other or 3 people who all do 
+    not know each other? \\\vspace{.25cm} 
+  In other words: What is R(3,3)?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example: $R(3,3)$}
+  \begin{center}
+    \begin{minipage}[b]{.47\textwidth}
+      \input{figs/r33ge5.tex}
+    \end{minipage}
+    \begin{minipage}[b]{.47\textwidth}
+      \input{figs/r33le6.tex}
+    \end{minipage}
+  \end{center}
+  Since $K_5$ can be 2-colored without monochromatic triangles, $R(3,3)> 5$.
+    Since $K_6$ cannot be colored without monochromatic triangles, $R(3,3)\le6$.
+    Thus $R(3,3)=6$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bipartite Ramsey Numbers}
+  \textbf{Two Color Bipartite Ramsey Number}: With 2 colors, red and blue, the bipartite 
+    Ramsey number $b(m,n)$ is the least positive integer $b$ such that if the edges of $K(b,b)$ 
+    are colored with red and blue, then there always exists a blue $K(m,m)$ or a red $K(n,n)$.\\
+  \begin{minipage}[b]{.47\textwidth}
+    \input{figs/b22g4.tex}
+  \end{minipage}
+  \begin{minipage}[b]{.47\textwidth}
+    \input{figs/b22le5.tex}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+  \frametitle{Bipartite Ramsey Numbers}
+  \textbf{Bipartite Ramsey Number}: The bipartite Ramsey number $b(n_1,...,n_k)$ is the 
+    least positive integer $b$ such that any coloring of the edges of $K_{b,b}$, with $k$ colors 
+    will result in a monochromatic copy of $K_{n_i,n_i}$, in the $i$-th color, for some $i$, $1\le 
+    i \le k$.\\\vspace{.25cm} 
+  If $n_i = m$ for all $i$, then we denote this number by $b_k(m)$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zarankiewicz Numbers}
+  \textbf{Zarankiewicz Numbers}: The Zarankiewicz number $z(m,n;s,t)$ is the maximum 
+    number of edges in a subgraph of $K_{m,n}$ that does not contain $K_{s,t}$ as a 
+    subgraph. \\\vspace{.25cm}
+  \textit{Special Case}: If $m=n$ and $s=t$, then we write $z(m,s)$ to denote the 
+    number of edges in a subgraph of $K_{m,m}$ that does not contain $K_{s,s}$ as a 
+    subgraph. \\\vspace{.25cm}
+  \textit{Relation to Bipartite Ramsey Numbers}: For two colors, finding upper bounds for 
+    Zarankiewicz numbers help provide upper bounds on bipartite Ramsey numbers.  
+  $$z(b,m) + z(b,n) < b^2  \hspace{4 mm} \implies\hspace{4mm} b(m,n) \le b$$
+  This relation can be extended to allow for more than two colors.
+\end{frame}
+
+\begin{frame}[noframenumbering]
+  \frametitle{Zarankiewicz Numbers}
+  \textit{Proof:} \\\vspace{.25cm}
+    Let $z(b,m) = z_1$, and  $z(b,n) = z_2$ \\\vspace{.25cm}
+    $K_{b,b}$ has $z_1$ red edges that does not contain a $K_{m,m}$ \\\vspace{.25cm}
+    $K_{b,b}$ has $z_2$ blue edges that does not contain a $K_{n,n}$ \\\vspace{.25cm}
+    We also know $K_{b,b}$ has $b^2$ edges \\\vspace{.25cm}
+    If $z_1 + z_2 < b^2 \implies b(m,n) \le b$ \\\vspace{.50cm}
+    Since if $b(m,n) = b+1$, $K_{b,b}$ will contain a red $K_{m,m}$ or a blue $K_{n,n}$ 
+\end{frame}
+
+\section{Problems of Interest}
+
+\begin{frame}
+  \frametitle{$b(2,5)$}
+  It is known that $16\le b(2,5)\le19$. (Goddard et al. 2004) \\\vspace{.25cm} 
+  \textit{Recall} that $b(2,5)$ is the smallest number of vertices in each partition of a complete 
+    bipartite graph such that if the edges are colored red or blue we are guaranteed a 
+    red $K_{2,2}$ or a blue $K_{5,5}$.\\\vspace{.25cm}
+  We could improve the lower bound by finding edge colorings of $K_{16,16}$ which do not
+    contain either of the forbidden subgraphs. Or we could improve the upper bound by 
+    showing that all possible colorings of $K_{18,18}$ contain one of the forbidden 
+    subgraphs. These graphs are not so large as to be computationally intractable.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{$b_5(2)$}
+  \textit{Recall} that $b_5(2)=b(2,2,2,2,2)$, the number of vertices in each partite set of a 
+    complete bipartite graph such that any 5-coloring of the edges results in a monochromatic 
+    4-cycle.\\\vspace{.25cm}
+  \textbf{Problem of Interest}: Determining values for $b_k(2)$ seems to be a difficult problem. 
+    The only known exact values are $b_2(2) = 5$, $b_3(2) = 11$, and $b_4(2) = 19$. \\
+    \vspace{.25cm}
+  \underline{Some Theorems}: (Dybizba$\acute{\text{n}}$ski, Dzido, Radziszowski, 2013) \\\vspace{.25cm} 
+  \textit{Theorem 1}:  $b_k(2) \ge k^2 + 1$  \\\vspace{.25cm} 
+  \textit{Theorem 2}: $b_k(2) \le k^2 + k -2$ \\\vspace{.25cm}
+  \textit{Theorem 3}: $26 \le b_5(2) \le 28$ \\\vspace{.25cm}
+  Possible conjecture for project: $b_5(2) = 28$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Readings}
+  \begin{itemize}
+    \item W.~Goddard, M.~A.~Henning and O.~R.~Oellermann, ``Bipartite Ramsey Numbers and 
+      Zarankiewicz Numbers'', \textit{Elsevier Science} (2004).
+    \item J.~Dybizba$\acute{\text{n}}$ski, T.~Dzido and S.~Radziszowski, ``On Some
+      Zarankiewicz Numbers and Bipartite Ramsey Numbers for Quadrilateral''. Forthcoming (2013).
+    \item R.~K.~Guy, ``A Many-Facetted Problem of Zarankiewicz'', \textit{The Many Facets of
+      Graph Theory} (1969).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Questions}
+  \begin{center}
+    {\Large Questions?}
+  \end{center}
+\end{frame}
+
+\end{document}
+
+
+
